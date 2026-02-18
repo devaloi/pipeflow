@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pipeflow"
+version = "0.1.0"
+description = "A modular ETL pipeline framework in Python"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Jason DeAloia" },
+]
+dependencies = [
+    "pyyaml>=6.0",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "mypy>=1.0",
+    "ruff>=0.3",
+]
+
+[project.scripts]
+pipeflow = "pipeflow.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+src = ["src"]
+line-length = 99
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
