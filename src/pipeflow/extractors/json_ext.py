@@ -4,10 +4,9 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Iterator
+from typing import Iterator
 
-
-Record = dict[str, Any]
+from pipeflow.types import Record
 
 
 class JSONExtractor:
@@ -19,6 +18,8 @@ class JSONExtractor:
 
     def extract(self) -> Iterator[Record]:
         """Yield records from the file."""
+        if not self.path.exists():
+            raise FileNotFoundError(f"JSON file not found: {self.path}")
         if self.format == "jsonl":
             yield from self._extract_jsonl()
         else:

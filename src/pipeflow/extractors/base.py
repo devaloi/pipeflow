@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Any, Iterator, Protocol
+from typing import Iterator, Protocol
 
-
-Record = dict[str, Any]
+from pipeflow.types import Record
 
 
 class Extractor(Protocol):

@@ -2,17 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Any
-
-
-Record = dict[str, Any]
+from pipeflow.lib.safe_eval import safe_eval
+from pipeflow.types import Record
 
 
 class DeriveTransform:
     """Compute a new column from an expression.
 
     Expression format: "new_col = expr" where expr uses record field names.
-    Uses a restricted eval with only record values in scope.
+    Uses a restricted AST-based evaluator with only record values in scope.
     """
 
     def __init__(self, expression: str) -> None:
@@ -24,14 +22,8 @@ class DeriveTransform:
 
     def apply(self, record: Record) -> Record:
         result = dict(record)
-        # Restricted scope: only record keys + basic builtins
-        safe_globals: dict[str, Any] = {"__builtins__": {
-            "len": len, "str": str, "int": int, "float": float,
-            "round": round, "abs": abs, "min": min, "max": max,
-            "upper": str.upper, "lower": str.lower,
-        }}
         try:
-            result[self.target] = eval(self.expr, safe_globals, result)  # noqa: S307
+            result[self.target] = safe_eval(self.expr, result)
         except Exception as e:
             raise ValueError(f"Failed to evaluate derive expression {self.expr!r}: {e}") from e
         return result

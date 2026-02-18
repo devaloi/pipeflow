@@ -4,8 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-
-Record = dict[str, Any]
+from pipeflow.types import Record
 
 
 class DeduplicateTransform:
@@ -16,6 +15,8 @@ class DeduplicateTransform:
 
     def __init__(self, key: list[str]) -> None:
         self.key = key
+        # Seen keys grow unboundedly — intentional for correctness.
+        # For very large datasets, consider adding an LRU eviction strategy.
         self._seen: set[tuple[Any, ...]] = set()
 
     def apply(self, record: Record) -> Record | None:

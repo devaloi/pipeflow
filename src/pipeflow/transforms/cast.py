@@ -2,19 +2,8 @@
 
 from __future__ import annotations
 
-from datetime import datetime
-from typing import Any
-
-
-Record = dict[str, Any]
-
-CAST_MAP: dict[str, type | Any] = {
-    "int": int,
-    "float": float,
-    "str": str,
-    "bool": bool,
-    "datetime": datetime.fromisoformat,
-}
+from pipeflow.lib.types import CAST_MAP
+from pipeflow.types import Record
 
 
 class CastTransform:

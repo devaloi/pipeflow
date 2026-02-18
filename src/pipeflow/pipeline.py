@@ -7,8 +7,7 @@ from typing import Any
 from pipeflow.config import PipelineConfig
 from pipeflow.observability.logger import get_logger
 from pipeflow.observability.metrics import PipelineMetrics
-
-Record = dict[str, Any]
+from pipeflow.types import Record
 logger = get_logger(__name__, json_format=False)
 
 

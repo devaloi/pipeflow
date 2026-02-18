@@ -6,8 +6,7 @@ import csv
 from pathlib import Path
 from typing import Any, Sequence
 
-
-Record = dict[str, Any]
+from pipeflow.types import Record
 
 
 class CSVWriterLoader:
@@ -16,7 +15,7 @@ class CSVWriterLoader:
     def __init__(self, path: str) -> None:
         self.path = Path(path)
         self._file = None
-        self._writer: csv.DictWriter | None = None  # type: ignore[type-arg]
+        self._writer: csv.DictWriter[str] | None = None
         self._header_written = False
 
     def load(self, records: Sequence[Record]) -> int:

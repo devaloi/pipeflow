@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from pipeflow.config import ExtractConfig
+from pipeflow.extractors.base import Extractor
 
 
-def build_extractor(config: ExtractConfig):  # type: ignore[return]
+def build_extractor(config: ExtractConfig) -> Extractor:
     """Factory: build an extractor from config."""
     from pipeflow.extractors.csv_ext import CSVExtractor
     from pipeflow.extractors.json_ext import JSONExtractor

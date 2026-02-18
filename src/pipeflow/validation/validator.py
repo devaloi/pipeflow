@@ -2,23 +2,13 @@
 
 from __future__ import annotations
 
-from datetime import datetime
 from typing import Any
 
 from pydantic import BaseModel, ValidationError, create_model
 
 from pipeflow.config import ValidateConfig
-
-
-Record = dict[str, Any]
-
-TYPE_MAP: dict[str, type] = {
-    "str": str,
-    "int": int,
-    "float": float,
-    "bool": bool,
-    "datetime": datetime,
-}
+from pipeflow.lib.types import TYPE_MAP
+from pipeflow.types import Record
 
 
 class RecordValidator:

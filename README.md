@@ -123,7 +123,11 @@ python -m pipeflow inspect <data_file>     # Show schema, row count, samples
 src/pipeflow/
 ├── cli.py               # argparse CLI
 ├── config.py            # YAML config → Pydantic models
+├── types.py             # Shared type aliases (Record)
 ├── pipeline.py          # Pipeline orchestrator
+├── lib/                 # Shared utilities
+│   ├── safe_eval.py     # Restricted expression evaluator (no eval())
+│   └── types.py         # Shared type/cast mappings
 ├── extractors/          # CSV, JSON, API extractors (Protocol-based)
 ├── transforms/          # Rename, cast, filter, derive, deduplicate
 ├── loaders/             # SQLite (upsert), CSV writer

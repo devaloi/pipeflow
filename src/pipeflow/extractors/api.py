@@ -7,8 +7,7 @@ import urllib.request
 import urllib.parse
 from typing import Any, Iterator
 
-
-Record = dict[str, Any]
+from pipeflow.types import Record
 
 
 class APIExtractor:

@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Any, Protocol
+from typing import Protocol
 
-
-Record = dict[str, Any]
+from pipeflow.types import Record
 
 
 class Transform(Protocol):

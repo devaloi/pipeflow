@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Any, Protocol, Sequence
+from typing import Protocol, Sequence
 
-
-Record = dict[str, Any]
+from pipeflow.types import Record
 
 
 class Loader(Protocol):

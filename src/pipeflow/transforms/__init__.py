@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from pipeflow.config import TransformConfig
+from pipeflow.transforms.base import Transform
 
 
-def build_transforms(configs: list[TransformConfig]) -> list:
+def build_transforms(configs: list[TransformConfig]) -> list[Transform]:
     """Factory: build a list of transforms from config."""
     from pipeflow.transforms.rename import RenameTransform
     from pipeflow.transforms.cast import CastTransform

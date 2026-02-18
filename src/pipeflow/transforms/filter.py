@@ -2,16 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Any
-
-
-Record = dict[str, Any]
+from pipeflow.lib.safe_eval import safe_eval
+from pipeflow.types import Record
 
 
 class FilterTransform:
     """Filter records using a boolean expression.
 
-    Uses restricted eval with record values in scope.
+    Uses a restricted AST-based evaluator with record values in scope.
     Returns None for records that don't match the condition.
     """
 
@@ -19,13 +17,8 @@ class FilterTransform:
         self.condition = condition
 
     def apply(self, record: Record) -> Record | None:
-        safe_globals: dict[str, Any] = {"__builtins__": {
-            "len": len, "str": str, "int": int, "float": float,
-            "abs": abs, "min": min, "max": max, "True": True, "False": False,
-            "None": None,
-        }}
         try:
-            result = eval(self.condition, safe_globals, record)  # noqa: S307
+            result = safe_eval(self.condition, record)
         except Exception as e:
             raise ValueError(
                 f"Failed to evaluate filter condition {self.condition!r}: {e}"

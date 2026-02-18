@@ -4,10 +4,9 @@ from __future__ import annotations
 
 import csv
 from pathlib import Path
-from typing import Any, Iterator
+from typing import Iterator
 
-
-Record = dict[str, Any]
+from pipeflow.types import Record
 
 
 class CSVExtractor:
@@ -25,6 +24,8 @@ class CSVExtractor:
 
     def extract(self) -> Iterator[Record]:
         """Yield records from the CSV file."""
+        if not self.path.exists():
+            raise FileNotFoundError(f"CSV file not found: {self.path}")
         with open(self.path, "r", newline="", encoding=self.encoding) as f:
             reader = csv.DictReader(f, delimiter=self.delimiter)
             for row in reader:

@@ -7,7 +7,7 @@ import csv
 import json
 import sys
 from pathlib import Path
-from typing import Sequence
+from typing import Any, Sequence
 
 from pipeflow.config import load_config
 from pipeflow.pipeline import Pipeline
@@ -124,7 +124,15 @@ def _inspect_csv(path: Path, num_rows: int) -> int:
         for _ in reader:
             count += 1
 
-    fieldnames = list(rows[0].keys()) if rows else []
+    if not rows:
+        print(f"File: {path}")
+        print("Format: CSV")
+        print("Columns: []")
+        print("Total rows: 0")
+        print("\nFile is empty — no data rows found.")
+        return 0
+
+    fieldnames = list(rows[0].keys())
     print(f"File: {path}")
     print(f"Format: CSV")
     print(f"Columns: {fieldnames}")
@@ -136,7 +144,7 @@ def _inspect_csv(path: Path, num_rows: int) -> int:
 
 
 def _inspect_json(path: Path, num_rows: int, jsonl: bool) -> int:
-    records: list[dict] = []  # type: ignore[type-arg]
+    records: list[dict[str, Any]] = []
     if jsonl:
         with open(path, "r", encoding="utf-8") as f:
             for line in f:
@@ -152,6 +160,14 @@ def _inspect_json(path: Path, num_rows: int, jsonl: bool) -> int:
             records = [data]
 
     fieldnames = list(records[0].keys()) if records else []
+    if not records:
+        print(f"File: {path}")
+        print(f"Format: {'JSONL' if jsonl else 'JSON'}")
+        print("Fields: []")
+        print("Total records: 0")
+        print("\nFile is empty — no records found.")
+        return 0
+
     print(f"File: {path}")
     print(f"Format: {'JSONL' if jsonl else 'JSON'}")
     print(f"Fields: {fieldnames}")

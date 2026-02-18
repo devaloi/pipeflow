@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from pipeflow.config import LoadConfig
+from pipeflow.loaders.base import Loader
 
 
-def build_loader(config: LoadConfig):  # type: ignore[return]
+def build_loader(config: LoadConfig) -> Loader:
     """Factory: build a loader from config."""
     from pipeflow.loaders.sqlite import SQLiteLoader
     from pipeflow.loaders.csv_writer import CSVWriterLoader
