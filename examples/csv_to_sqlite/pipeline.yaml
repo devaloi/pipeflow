@@ -1,0 +1,36 @@
+name: users_import
+extract:
+  type: csv
+  path: ./examples/csv_to_sqlite/data.csv
+  delimiter: ","
+
+transforms:
+  - type: rename
+    mapping:
+      "Full Name": "full_name"
+  - type: cast
+    columns:
+      age: int
+  - type: filter
+    condition: "age >= 18"
+  - type: deduplicate
+    key: email
+
+validate:
+  model: UserRecord
+  fields:
+    name:
+      type: str
+    email:
+      type: str
+    age:
+      type: int
+    city:
+      type: str
+
+load:
+  type: sqlite
+  database: ./output.db
+  table: users
+  mode: upsert
+  conflict_key: email

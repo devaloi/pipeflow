@@ -1,0 +1,17 @@
+name: json_transform
+extract:
+  type: json
+  path: ./examples/json_transform/data.json
+
+transforms:
+  - type: derive
+    expression: "full_name = first_name + ' ' + last_name"
+  - type: cast
+    columns:
+      score: int
+  - type: filter
+    condition: "score >= 80"
+
+load:
+  type: csv
+  path: ./examples/json_transform/output.csv

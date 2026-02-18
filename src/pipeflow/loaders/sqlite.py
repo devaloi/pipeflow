@@ -39,7 +39,14 @@ class SQLiteLoader:
         if self._table_created:
             return
         col_defs = ", ".join(f'"{col}" TEXT' for col in columns)
-        self.conn.execute(f'CREATE TABLE IF NOT EXISTS "{self.table}" ({col_defs})')
+        if self.conflict_key and self.conflict_key in columns:
+            # Add UNIQUE constraint on the conflict key for upsert support
+            self.conn.execute(
+                f'CREATE TABLE IF NOT EXISTS "{self.table}" '
+                f'({col_defs}, UNIQUE("{self.conflict_key}"))'
+            )
+        else:
+            self.conn.execute(f'CREATE TABLE IF NOT EXISTS "{self.table}" ({col_defs})')
         self.conn.commit()
         self._table_created = True
 

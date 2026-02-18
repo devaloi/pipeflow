@@ -1,0 +1,10 @@
+[
+  {"id": 1, "first_name": "Alice", "last_name": "Johnson", "score": 95, "department": "Engineering"},
+  {"id": 2, "first_name": "Bob", "last_name": "Smith", "score": 87, "department": "Marketing"},
+  {"id": 3, "first_name": "Charlie", "last_name": "Brown", "score": 72, "department": "Engineering"},
+  {"id": 4, "first_name": "Diana", "last_name": "Prince", "score": 91, "department": "Sales"},
+  {"id": 5, "first_name": "Eve", "last_name": "Davis", "score": 68, "department": "Marketing"},
+  {"id": 6, "first_name": "Frank", "last_name": "Miller", "score": 84, "department": "Engineering"},
+  {"id": 7, "first_name": "Grace", "last_name": "Lee", "score": 79, "department": "Sales"},
+  {"id": 8, "first_name": "Henry", "last_name": "Wilson", "score": 93, "department": "Engineering"}
+]
