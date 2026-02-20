@@ -7,7 +7,6 @@ import json
 import sqlite3
 from pathlib import Path
 
-import pytest
 
 from pipeflow.config import load_config
 from pipeflow.pipeline import Pipeline

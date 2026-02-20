@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pipeflow.config import ValidateConfig
-from pipeflow.validation.validator import build_validator, RecordValidator
+from pipeflow.validation.validator import build_validator
 
 
 class TestRecordValidator:

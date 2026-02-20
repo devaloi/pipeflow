@@ -14,7 +14,7 @@ def build_transforms(configs: list[TransformConfig]) -> list[Transform]:
     from pipeflow.transforms.derive import DeriveTransform
     from pipeflow.transforms.deduplicate import DeduplicateTransform
 
-    transforms = []
+    transforms: list[Transform] = []
     for cfg in configs:
         match cfg.type:
             case "rename":

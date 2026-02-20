@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from pipeflow.config import PipelineConfig, load_config
+from pipeflow.config import load_config
 
 
 def _write_yaml(tmp_path: Path, content: str) -> Path:

@@ -58,7 +58,7 @@ class PipelineConfig(BaseModel):
     name: str
     extract: ExtractConfig
     transforms: list[TransformConfig] = Field(default_factory=list)
-    validate: ValidateConfig | None = Field(default=None, alias="validate")
+    validate: ValidateConfig | None = Field(default=None, alias="validate")  # type: ignore[assignment]
     load: LoadConfig
 
     model_config = {"populate_by_name": True}

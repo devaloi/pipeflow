@@ -34,8 +34,10 @@ class APIExtractor:
         """Yield records, following pagination if configured."""
         url = self._build_url(self.url, self.params)
 
-        while url:
-            data, next_url = self._fetch_page(url)
+        page_url: str | None = url
+
+        while page_url:
+            data, next_url = self._fetch_page(page_url)
             if isinstance(data, list):
                 yield from data
             elif isinstance(data, dict):
@@ -46,7 +48,7 @@ class APIExtractor:
                         break
                 else:
                     yield data
-            url = next_url
+            page_url = next_url
 
     def _build_url(self, base_url: str, params: dict[str, str]) -> str:
         if not params:

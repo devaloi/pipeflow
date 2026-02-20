@@ -134,7 +134,7 @@ def _inspect_csv(path: Path, num_rows: int) -> int:
 
     fieldnames = list(rows[0].keys())
     print(f"File: {path}")
-    print(f"Format: CSV")
+    print("Format: CSV")
     print(f"Columns: {fieldnames}")
     print(f"Total rows: {count}")
     print(f"\nSample ({min(num_rows, len(rows))} rows):")

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any
 
 from pipeflow.config import PipelineConfig
 from pipeflow.observability.logger import get_logger

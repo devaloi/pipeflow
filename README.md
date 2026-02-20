@@ -1,5 +1,7 @@
 # pipeflow
 
+[![CI](https://github.com/devaloi/pipeflow/actions/workflows/ci.yml/badge.svg)](https://github.com/devaloi/pipeflow/actions/workflows/ci.yml)
+
 A modular ETL pipeline framework in Python — ingest CSV/JSON/API sources, transform with composable steps, load to SQLite or CSV with validation and error handling.
 
 ## Features
@@ -153,4 +155,4 @@ python -m mypy src/pipeflow/
 
 ## License
 
-MIT — Copyright (c) 2026 Jason DeAloia
+MIT — Copyright (c) 2026 Jason Aloi

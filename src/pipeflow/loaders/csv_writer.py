@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import csv
 from pathlib import Path
-from typing import Any, Sequence
+from typing import IO, Sequence
 
 from pipeflow.types import Record
 
@@ -14,7 +14,7 @@ class CSVWriterLoader:
 
     def __init__(self, path: str) -> None:
         self.path = Path(path)
-        self._file = None
+        self._file: IO[str] | None = None
         self._writer: csv.DictWriter[str] | None = None
         self._header_written = False
 

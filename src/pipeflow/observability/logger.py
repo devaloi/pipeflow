@@ -19,9 +19,9 @@ class JSONFormatter(logging.Formatter):
             "logger": record.name,
         }
         if hasattr(record, "pipeline"):
-            log_data["pipeline"] = record.pipeline  # type: ignore[attr-defined]
+            log_data["pipeline"] = getattr(record, "pipeline")
         if hasattr(record, "stage"):
-            log_data["stage"] = record.stage  # type: ignore[attr-defined]
+            log_data["stage"] = getattr(record, "stage")
         if record.exc_info and record.exc_info[1]:
             log_data["error"] = str(record.exc_info[1])
         return json.dumps(log_data)
