@@ -156,3 +156,7 @@ python -m mypy src/pipeflow/
 ## License
 
 MIT — Copyright (c) 2026 Jason Aloi
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). PRs welcome — run `make all` before submitting.
