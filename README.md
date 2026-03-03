@@ -1,6 +1,8 @@
 # pipeflow
 
 [![CI](https://github.com/devaloi/pipeflow/actions/workflows/ci.yml/badge.svg)](https://github.com/devaloi/pipeflow/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat&logo=python)](https://python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 A modular ETL pipeline framework in Python — ingest CSV/JSON/API sources, transform with composable steps, load to SQLite or CSV with validation and error handling.
 
